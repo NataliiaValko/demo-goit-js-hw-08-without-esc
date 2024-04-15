@@ -66,8 +66,6 @@ const images = [
   },
 ];
 
-let instanceModal;
-
 const galleryMarkup = images
   .map(
     ({ preview, original, description }) => `<li class="gallery-item">
@@ -93,20 +91,8 @@ const onGalleryClick = (e) => {
   const largeImageURL = e.target.dataset.source;
   const largeImageAlt = e.target.alt;
 
-  const handleKeydownEscape = (e) => {
-    if (e.code === "Escape") instanceModal.close();
-  };
-
-  instanceModal = basicLightbox.create(
-    `<img src=${largeImageURL} alt=${largeImageAlt} />`,
-    {
-      onShow: () => {
-        document.addEventListener("keydown", handleKeydownEscape);
-      },
-      onClose: () => {
-        document.removeEventListener("keydown", handleKeydownEscape);
-      },
-    }
+  const instanceModal = basicLightbox.create(
+    `<img src=${largeImageURL} alt=${largeImageAlt} />`
   );
 
   instanceModal.show();
